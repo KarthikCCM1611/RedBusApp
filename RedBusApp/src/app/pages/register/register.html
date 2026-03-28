@@ -1,0 +1,135 @@
+<div class="parent">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="glass-card p-4 card-hover">
+                    <h3 class="mb-3">Create Account</h3>
+
+                    <!-- Template-driven form -->
+                    <form #regForm="ngForm" novalidate class="row g-3">
+
+                        <!-- Name -->
+                        <div class="col-12">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Your Name"
+                                [(ngModel)]="registerObj.name" #name="ngModel" required minlength="2" />
+                            @if(name.invalid && (name.dirty || name.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(name.errors?.['required']) {
+                                <small>Name is required.</small>
+                                }
+                                @else if (name.errors?.['minlength']) {
+                                <small>Name must be at least 2 characters.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-12">
+                            <label class="form-label" for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="you@example.com" [(ngModel)]="registerObj.email" #email="ngModel" required
+                                email />
+                            @if(email.invalid && (email.dirty || email.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(email.errors?.['required']) {
+                                <small>Email is required.</small>
+                                }
+                                @else if (email.errors?.['email']) {
+                                <small>Enter a valid email address.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Password -->
+                        <div class="col-12">
+                            <label class="form-label" for="password">Password</label>
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Enter Password" [(ngModel)]="registerObj.password" #password="ngModel"
+                                required minlength="6" />
+                            @if(password.invalid && (password.dirty || password.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(password.errors?.['required']) {
+                                <small>Password is required.</small>
+                                }
+                                @else if (password.errors?.['minlength']) {
+                                <small>Password must be at least 6 characters.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="col-12">
+                            <label class="form-label" for="confirmPassword">Confirm Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" class="form-control"
+                                placeholder="Confirm Password" [(ngModel)]="registerObj.confirmPassword"
+                                #confirmPassword="ngModel" required />
+                            @if(confirmPassword.dirty || confirmPassword.touched) {
+                            <div class="mt-1 text-warning">
+                                @if(confirmPassword.errors?.['required']) {
+                                <small>Confirmation Password is required.</small>
+                                }
+                                @else if (password.value && confirmPassword.value && (password.value !==
+                                confirmPassword.value)) {
+                                <small>Passwords do not match.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="col-12">
+                            <label class="form-label" for="phoneNo">Phone Number</label>
+                            <input type="tel" id="phoneNo" name="phoneNo" class="form-control"
+                                placeholder="Enter Phone Number" [(ngModel)]="registerObj.phoneNo" #phoneNo="ngModel"
+                                required pattern="^[0-9]{10}$" />
+                            @if(phoneNo.invalid && (phoneNo.dirty || phoneNo.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(phoneNo.errors?.['required']) {
+                                <small>Phone number is required.</small>
+                                }
+                                @else if (phoneNo.errors?.['pattern']) {
+                                <small>Enter a valid 10-digit number.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- City -->
+                        <div class="col-12">
+                            <label class="form-label" for="city">City</label>
+                            <input type="text" id="city" name="city" class="form-control" placeholder="Enter City"
+                                [(ngModel)]="registerObj.city" #city="ngModel" required minlength="2" />
+                            @if(city.invalid && (city.dirty || city.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(city.errors?.['required']) {
+                                <small>City is required.</small>
+                                }
+                                @else if (city.errors?.['minlength']) {
+                                <small>City must be at least 2 characters.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12 d-grid">
+                            <button class="btn btn-primary" type="button" (click)="onRegister(regForm)"
+                                [disabled]="regForm.invalid || (password.value !== confirmPassword.value)">
+                                Register
+                            </button>
+                        </div>
+                    </form>
+
+                    <div id="msg" class="mt-3"></div>
+                    <p class="mt-3 text-muted">Already have an account? <a routerLink="/login">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-toast #toast [type]="toastType()" [autohide]="true" [delay]="delay()"></app-toast>

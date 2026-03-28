@@ -1,0 +1,63 @@
+<div class="parent">
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4">
+                    <h1 class="title display-5 gradient-text animate__animated animate__fadeInDown">Find & Book Your Bus
+                        Fast</h1>
+                    <p class="subtitle lead">Search buses across cities, pick seats in real-time, and checkout in a
+                        breeze.
+                    </p>
+                    <div class="glass-card p-4 mt-3 card-hover">
+                        <form id="searchForm" #searchForm="ngForm" class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">From</label>
+                                <select id="from" class="form-select" [(ngModel)]="fromLocation" name="fromLocation"
+                                    required>
+                                    <option value="" disabled selected>Choose Location</option>
+                                    @for (location of locations(); track $index) {
+                                    <option [value]="location.id"> {{ location.name }} </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">To</label>
+                                <select id="to" class="form-select" [(ngModel)]="toLocation" name="toLocation" required>
+                                    <option value="" disabled selected>Choose Location</option>
+                                    @for (location of locations(); track $index) {
+                                    <option [value]="location.id"> {{ location.name }} </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12 d-grid d-md-block">
+                                <button class="btn btn-primary px-4 py-2"
+                                    [disabled]="searchForm.invalid || (fromLocation() === toLocation())"
+                                    (click)="searchBus()"><i class="fa-solid fa-magnifying-glass me-2"></i>Search
+                                    Buses</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="glass-card p-4 card-hover">
+                        <h5 class="mb-3"><i class="fa-solid fa-fire gradient-text"></i> Trending Routes</h5>
+                        <div class="row g-3">
+                            @for(route of trendingRoutes(); track $index) {
+                            <div class="col-md-6">
+                                <div class="p-3 rounded-3 shimmer">{{route.fromLocationName}} → {{route.toLocationName}}
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-center py-4">
+        <div class="container">Made with <i class="fa-solid fa-heart" style="color:#ff6b6b"></i> • GoBus UI Prototype
+        </div>
+    </footer>
+</div>
+<app-toast #toast [type]="toastType()" [autohide]="true" [delay]="delay()"></app-toast>

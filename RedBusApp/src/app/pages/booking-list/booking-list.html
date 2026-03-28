@@ -1,0 +1,35 @@
+<div class="parent">
+    <div class="container py-4">
+        <h3 class="gradient-text">My Booking Status</h3>
+        <div id="bookings" class="row g-4">
+            @if (bookingList() && bookingList().length > 0) {
+            @for(booking of bookingList(); track $index) {
+            <div class="col-md-6">
+                <div class='glass-card p-4 h-100 card-hover'>
+                    <div class='d-flex justify-content-between'>
+                        <div>
+                            <h5 class='mb-1'>{{booking.busName}}</h5>
+                            <div class='text-muted'>{{booking.fromLocationName}} → {{booking.toLocationName}}</div>
+                            </div>
+                            <div class='text-end'>
+                            </div>
+                        </div>
+                        <div class='mt-2'>Seats: <span
+                                class='badge bg-info text-dark'>{{booking.seatNos.join(",")}}</span></div>
+                        <button class='btn btn-warning mt-2' (click)="cancelBooking(booking)">Cancel Booking</button>
+                    </div>
+                </div>
+                }
+                }
+                @else if(isSearching()) {
+                <div class="glass-card p-4">Searching bookings..</div>
+                }
+                @else if (!isSearching()) {
+                <div class="col-12">
+                    <div class="glass-card p-4">{{errorMsg()}} No bookings yet.</div>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+    <app-toast #toast [type]="toastType()" [autohide]="true" [delay]="delay()"></app-toast>

@@ -1,0 +1,325 @@
+/* You can add global styles to this file, and also import other style files */
+.parent,
+.navbar,
+.btn,
+.form-control {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* THEME SYSTEM */
+:root {
+    --bg-gradient-start: #1f1c2c;
+    --bg-gradient-end: #928DAB;
+    --accent: #00d4ff;
+    --accent-2: #ff6b6b;
+    --accent-3: #8aff80;
+    --primary: #6C63FF;
+    --text: #e9eef6;
+    --muted: #b8c1d1;
+    --card-bg: rgba(255, 255, 255, 0.08);
+    --card-border: rgba(255, 255, 255, 0.15);
+    --input-bg: rgba(255, 255, 255, .12);
+    --input-border: rgba(255, 255, 255, .2);
+}
+
+html[data-theme='light'] {
+    --bg-gradient-start: #f4f7fb;
+    --bg-gradient-end: #dfe7f1;
+    --text: #1b2735;
+    --muted: #56667a;
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-border: rgba(0, 0, 0, 0.08);
+    --input-bg: #ffffff;
+    --input-border: rgba(0, 0, 0, 0.12);
+}
+
+/* Animated gradient background */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text);
+    background-size: 200% 200%;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Glassmorphism card */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Shimmer */
+.shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    animation: shimmer 1.8s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        left: 150%;
+    }
+}
+
+/* Floating blobs */
+.blob {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    filter: blur(32px);
+    opacity: 0.45;
+    z-index: -1;
+    animation: floaty 10s ease-in-out infinite;
+}
+
+.blob.b1 {
+    background: #6C63FF;
+    top: 5%;
+    left: 5%;
+}
+
+.blob.b2 {
+    background: #00d4ff;
+    bottom: 10%;
+    right: 8%;
+    animation-delay: 2s;
+}
+
+.blob.b3 {
+    background: #ff6b6b;
+    top: 40%;
+    right: 30%;
+    animation-delay: 4s;
+}
+
+@keyframes floaty {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    50% {
+        transform: translateY(-15px) translateX(10px);
+    }
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(90deg, #00d4ff, #8aff80, #ff6b6b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Navbar */
+.navbar-glass {
+    background: rgba(12, 16, 28, 0.55);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: var(--text) !important;
+    opacity: .85;
+}
+
+.nav-link:hover {
+    opacity: 1;
+}
+
+/* Hero */
+.hero {
+    padding: 72px 0 24px;
+}
+
+.hero .title {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.hero .subtitle {
+    color: var(--muted);
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), #00d4ff);
+    border: none;
+    box-shadow: 0 10px 20px rgba(108, 99, 255, .35);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+.btn-outline-light {
+    border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* Cards hover */
+.card-hover {
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .35);
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+    background: var(--input-bg);
+    color: var(--text);
+    border: 1px solid var(--input-border);
+}
+
+.form-control::placeholder {
+    color: #7b8a9b;
+    opacity: .9;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, .18);
+    border-color: #00d4ff;
+    color: var(--text);
+}
+
+/* High-contrast dropdown list */
+.form-select option {
+    color: #1b2735;
+    background-color: #ffffff;
+}
+
+html[data-theme='dark'] .form-select option {
+    color: #1b2735;
+    background-color: #ffffff;
+}
+
+/* Seat grid */
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.seat {
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    user-select: none;
+    transition: transform .2s, box-shadow .2s, filter .2s;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.seat.available {
+    background: rgba(138, 255, 128, .20);
+    color: #1b5e20;
+}
+
+.seat.available:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .25);
+}
+
+.seat.booked {
+    background: rgba(255, 107, 107, .20);
+    color: #7a1a1a;
+    cursor: not-allowed;
+    filter: grayscale(.3);
+}
+
+.seat.selected {
+    background: rgba(0, 212, 255, .25);
+    color: #004b64;
+    box-shadow: 0 8px 18px rgba(0, 212, 255, .35);
+}
+
+.seat-legend span {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-right: 8px;
+    font-weight: 600;
+}
+
+.seat-legend .avail {
+    background: rgba(138, 255, 128, .25);
+}
+
+.seat-legend .book {
+    background: rgba(255, 107, 107, .25);
+}
+
+.seat-legend .sel {
+    background: rgba(0, 212, 255, .25);
+}
+
+/* Tables */
+.table {
+    color: var(--text);
+}
+
+.table thead th {
+    border-color: rgba(255, 255, 255, .25);
+}
+
+.table tbody td {
+    border-color: rgba(255, 255, 255, .15);
+}
+
+/* Footer */
+.footer {
+    color: var(--muted);
+    font-size: .9rem;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    border: 1px solid var(--input-border);
+    border-radius: 999px;
+    padding: 6px 12px;
+    color: var(--text);
+    background: var(--card-bg);
+}
+
+.theme-toggle:hover {
+    filter: brightness(1.05);
+}

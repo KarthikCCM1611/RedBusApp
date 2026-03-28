@@ -1,0 +1,9 @@
+/* src/app/shared/toast-container/toast-container.component.css */
+.toast-container {
+    pointer-events: none;
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 280px;
+}

@@ -1,0 +1,272 @@
+<div class="parent">
+    <div class="container-fluid py-4">
+        <h3 class="gradient-text">Admin Dashboard</h3>
+        <p class="text-muted">Manage locations and buses.</p>
+
+        <div class="row g-4">
+            <div class="col-lg-4">
+                <div class="glass-card p-4">
+                    <h5>Add Location</h5>
+                    <form id="locForm" #locForm="ngForm" class="row g-3">
+                        <div class="col-12">
+                            <input id="locName" name="name" [(ngModel)]="locationObj.name" class="form-control"
+                                placeholder="Location name" #locationName="ngModel" required minlength="3">
+                            @if(locationName.invalid && (locationName.dirty || locationName.touched)) {
+                            <div class="mt-1 text-warning">
+                                @if(locationName.errors?.['required']) {
+                                <small>Location is required.</small>
+                                }
+                                @else if (locationName.errors?.['minlength']) {
+                                <small>Location Name must be at least 3 characters.</small>
+                                }
+                            </div>
+                            }
+                        </div>
+                        <div class="col-12">
+                            @if (locationObj.id === "") {
+                            <button class="col-6 btn btn-primary" [disabled]="locForm.invalid"
+                                (click)="addLocation()">Add New Location</button>
+                            }
+                            @else {
+                            <button class="col-6 btn btn-primary" [disabled]="locForm.invalid"
+                                (click)="updateLocation()">Update Location</button>
+                            }
+                            <button class="col-5 m-2 btn btn-warning" (click)="clearLocation()">Clear</button>
+                        </div>
+                    </form>
+                    <hr>
+                    <h6 class="text-center">All Locations</h6>
+
+                    @for (location of locations(); track $index) {
+                    <li class="list-group-item d-flex align-items-center justify-content-between">
+                        <span class="me-2">{{ location.name }}</span>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                            <button type="button" class="btn btn-primary m-1"
+                                (click)="editLocation(location)">Edit</button>
+                            <button type="button" class="btn btn-danger m-1"
+                                (click)="deleteLocation(location)">Delete</button>
+                        </div>
+                    </li>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="glass-card p-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5>Add New Bus</h5>
+                        <span class="text-muted">Default layout: 4 x 8 seats</span>
+                    </div>
+                    <form id="busForm" #busForm="ngForm" class="row g-3">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-12 d-flex align-items-center gap-2">
+                                <div class="col-6 d-flex align-items-center gap-2">
+                                    <label class="form-label text-nowrap" for="name">Bus Name</label>
+                                    <input id="operator" class="form-control" placeholder="Bus Name" name="name"
+                                        [(ngModel)]="busObj.name" #busName="ngModel" required minlength="3">
+                                </div>
+                                <div class="col-4">
+                                    @if(busName.invalid && (busName.dirty || busName.touched)) {
+                                    <div class="mt-1 text-warning">
+                                        @if(busName.errors?.['required']) {
+                                        <small>Bus Name is required.</small>
+                                        }
+                                        @else if (busName.errors?.['minlength']) {
+                                        <small>Bus Name must be at least 3 characters.</small>
+                                        }
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 align-items-center">
+                            <!-- From -->
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="from" class="col-auto col-form-label text-nowrap mb-0">From
+                                        Location</label>
+                                    <div class="col">
+                                        <select id="from" class="form-select" name="fromLocation"
+                                            [(ngModel)]="busObj.fromLocationId" required #fromLocation="ngModel">
+                                            <option value="" disabled selected>Choose Location</option>
+                                            @for (location of locations(); track $index) {
+                                            <option [value]="location.id">{{ location.name }}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                @if(fromLocation.invalid && (fromLocation.dirty || fromLocation.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(fromLocation.errors?.['required']) {
+                                    <small>From Location is required.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+
+                            <!-- To -->
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="to" class="col-auto col-form-label text-nowrap mb-0">To Location</label>
+                                    <div class="col">
+                                        <select id="to" class="form-select" name="toLocation"
+                                            [(ngModel)]="busObj.toLocationId" required #toLocation="ngModel">
+                                            <option value="" disabled selected>Choose Location</option>
+                                            @for (location of locations(); track $index) {
+                                            <option [value]="location.id">{{ location.name }}</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                @if(toLocation.invalid && (toLocation.dirty || toLocation.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(toLocation.errors?.['required']) {
+                                    <small>To Location is required.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="to" class="col-auto col-form-label text-nowrap mb-0">Depart Time</label>
+                                    <div class="col">
+                                        <input type="datetime-local" id="arrive" class="form-control"
+                                            placeholder="Arrive (e.g., 14:45)" name="departTime"
+                                            [(ngModel)]="busObj.departTime" #departTime="ngModel" required>
+                                    </div>
+                                </div>
+                                @if(departTime.invalid && (departTime.dirty || departTime.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(departTime.errors?.['required']) {
+                                    <small>Depart Time is required.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="from" class="col-auto col-form-label text-nowrap mb-0">Arrival
+                                        Time</label>
+                                    <div class="col">
+                                        <input type="datetime-local" id="depart" class="form-control"
+                                            placeholder="Depart (e.g., 08:30)" #arriveTime="ngModel" name="arriveTime"
+                                            [(ngModel)]="busObj.arriveTime" required>
+                                    </div>
+                                </div>
+                                @if(arriveTime.invalid && (arriveTime.dirty || arriveTime.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(arriveTime.errors?.['required']) {
+                                    <small>Arrive Time is required.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="from" class="col-auto col-form-label text-nowrap mb-0">Total
+                                        Capactiy</label>
+                                    <div class="col">
+                                        <input type="number" id="capacity" class="form-control"
+                                            placeholder="Total Capacity" name="totalCapacity" #totalCapacity="ngModel"
+                                            [(ngModel)]="busObj.totalCapacity" required max="32" min="8">
+                                    </div>
+                                </div>
+                                @if(totalCapacity.invalid && (totalCapacity.dirty || totalCapacity.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(totalCapacity.errors?.['required']) {
+                                    <small>Total Capacity is required.</small>
+                                    }
+                                    @else if(totalCapacity.errors?.['max']) {
+                                    <small>Maximum Capacity must be below 32.</small>
+                                    }
+                                    @else if(totalCapacity.errors?.['min']) {
+                                    <small>Minimum Capacity must be above 8.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row g-2 align-items-center">
+                                    <label for="to" class="col-auto col-form-label text-nowrap mb-0">Price</label>
+                                    <div class="col">
+                                        <input id="price" type="number" class="form-control" name="price"
+                                            [(ngModel)]="busObj.price" placeholder="Price" #price="ngModel" min="100"
+                                            required>
+                                    </div>
+                                </div>
+                                @if(price.invalid && (price.dirty || price.touched)) {
+                                <div class="mt-1 text-warning">
+                                    @if(price.errors?.['required']) {
+                                    <small>Price is required.</small>
+                                    }
+                                    @else if(price.errors?.['min']) {
+                                    <small>Price must be above 100.</small>
+                                    }
+                                </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            @if (busObj.id === "") {
+                            <button class="col-7 btn btn-primary" [disabled]="busForm.invalid" (click)="addBus()">Add
+                                Bus</button>
+                            }
+                            @else {
+                            <button class="col-7 btn btn-primary" [disabled]="busForm.invalid"
+                                (click)="updateBus()">Update Bus</button>
+                            }
+                            <button class="col-4 m-2 btn btn-warning" (click)="clearBus()">Clear Bus</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="glass-card p-4 mt-4">
+                    <h5>Existing Buses</h5>
+                    <div class="table-responsive">
+                        <table class="table table-dark table-striped align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Bus Name</th>
+                                    <th>From Location</th>
+                                    <th>To Location</th>
+                                    <th>Depart Time</th>
+                                    <th>Arrival Time</th>
+                                    <th>Total Capacity</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="busTable">
+                                @for(bus of buses(); track $index) {
+                                <tr>
+                                    <td>{{bus.name}}</td>
+                                    <td>{{bus.fromLocationName}}</td>
+                                    <td>{{bus.toLocationName}}</td>
+                                    <td>{{bus.departTime | date: 'dd-MM-yy hh:mm a'}}</td>
+                                    <td>{{bus.arriveTime | date:'dd-MM-yy hh:mm a'}}</td>
+                                    <td>{{bus.totalCapacity}}</td>
+                                    <td>{{bus.price}}</td>
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                            <button type="button" class="btn btn-primary m-1"
+                                                (click)="editBus(bus)">Edit</button>
+                                            <button type="button" class="btn btn-danger m-1"
+                                                (click)="deleteBus(bus)">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-toast #toast [type]="toastType()" [autohide]="true" [delay]="delay()"></app-toast>

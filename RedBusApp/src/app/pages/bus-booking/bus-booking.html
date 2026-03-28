@@ -1,0 +1,74 @@
+<div class="parent">
+    <div class="container py-4">
+        <div id="busCard" class="glass-card p-4 mb-3">
+            <div class='d-flex justify-content-between align-items-center'>
+                <div>
+                    <h4 class='mb-1'>{{busDetails()?.name}}</h4>
+                    <div class='text-muted'>{{busDetails()?.fromLocationName}} → {{busDetails()?.toLocationName}} •
+                        {{busDetails()?.departTime | date: 'dd-MM-yy hh:mm a'}} to {{busDetails()?.arriveTime | date:
+                        'dd-MM-yy hh:mm a'}}</div>
+                </div>
+                <div class='text-end'>
+                    <!-- <div><span class='badge bg-info text-dark'>Rating ${bus.rating} ★</span></div> -->
+                    <div class='mt-2'><span class='badge bg-success'>₹ {{busDetails()?.price}} / seat</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-8">
+                <div class="glass-card p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Select Seats</h5>
+                        <div class="seat-legend">
+                            <span class="avail">Available</span>
+                            <span class="sel">Selected</span>
+                            <span class="book">Booked</span>
+                        </div>
+                    </div>
+                    <div id="seatGrid" class="seat-grid">
+                        @for(seat of seatList(); track $index) {
+                        @if(busDetails()?.seatNos?.includes(seat)) {
+                        <span [class]="'seat ' + 'booked'">{{seat}}</span>
+                        }
+                        @else if (selectedSeats().includes(seat)) {
+                        <span [class]="'seat ' + 'selected'" (click)="onSeatClick(seat)">{{seat}}</span>
+                        }
+                        @else {
+                        <span [class]="'seat ' + 'available'" (click)="onSeatClick(seat)">{{seat}}</span>
+                        }
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="glass-card p-4">
+                    <h5>Fare Summary</h5>
+                    <p class="text-muted">Ticket Price: {{busDetails()?.price}} <span class="badge bg-success"
+                            id="price"></span></p>
+                    <p class="text-muted">Selected Seats: <span class="badge bg-info text-dark"
+                            id="selectedSeats">{{selectedSeats().length === 0 ? 'None' :
+                            selectedSeats().join(',')}}</span></p>
+                    <h4 class="mt-3">Total: ₹ <span id="total">{{totalAmount()}}</span></h4>
+                    @if (!userId()) {
+                    <div class="alert alert-warning mt-3">Please login to book the ticket.</div>
+                    }
+                    @else if (authSrc.email() !== 'admin@gmail.com') {
+                    @if(isSeatAvailable()) {
+                    <button id="bookBtn" class="btn btn-primary w-100 mt-3" (click)="createBooking()"
+                        [disabled]="selectedSeats().length === 0">
+                        <i class="fa-solid fa-ticket me-2"></i>Book
+                        Selected</button>
+                    }
+                    @if(!isSeatAvailable()) {
+                    <div class="text-danger text-center mt-3">Sorry the bus is full.</div>
+                    }
+                    @else if (selectedSeats().length === 0) {
+                    <div class="text-warning text-center mt-3">Select at least one seat.</div>
+                    }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-toast #toast [type]="toastType()" [autohide]="true" [delay]="delay()"></app-toast>
