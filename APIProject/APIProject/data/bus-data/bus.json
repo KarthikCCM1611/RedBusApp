@@ -1,0 +1,52 @@
+[
+  {
+    "Id": "b41cdba7-e4df-4f56-9e6c-8925f0bd1375",
+    "Name": "Lion Travels",
+    "FromLocationId": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "DepartTime": "2025-12-25T20:00:00",
+    "ArriveTime": "2025-12-26T06:00:00",
+    "TotalCapacity": 32,
+    "Price": 650
+  },
+  {
+    "Id": "c25ac6de-8481-4d4e-be3f-3b76933bc090",
+    "Name": "Lion",
+    "FromLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "ToLocationId": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "DepartTime": "2025-12-25T21:00:00",
+    "ArriveTime": "2025-12-26T04:45:00",
+    "TotalCapacity": 28,
+    "Price": 800
+  },
+  {
+    "Id": "0fe3e19d-4d65-4b88-9751-f7f671ca99eb",
+    "Name": "Sakthi Travels",
+    "FromLocationId": "558a0c4e-bed6-4dd8-bc78-a7186ee304f9",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "DepartTime": "2025-12-25T20:30:00",
+    "ArriveTime": "2025-12-26T05:30:00",
+    "TotalCapacity": 24,
+    "Price": 1000
+  },
+  {
+    "Id": "6d9c133a-08a1-4572-bc0b-8b4a7c528fbe",
+    "Name": "SM Travels",
+    "FromLocationId": "9db75580-5d72-4293-8410-c9028f1d2b62",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "DepartTime": "2025-12-25T22:00:00",
+    "ArriveTime": "2025-12-26T07:00:00",
+    "TotalCapacity": 32,
+    "Price": 760
+  },
+  {
+    "Id": "ee009b2f-3a40-4bc2-b338-63561a7c33f8",
+    "Name": "VM Travels",
+    "FromLocationId": "fe134727-9e0f-45eb-9d33-31b7757e7771",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "DepartTime": "2025-12-28T20:30:00",
+    "ArriveTime": "2025-12-29T05:30:00",
+    "TotalCapacity": 32,
+    "Price": 920
+  }
+]

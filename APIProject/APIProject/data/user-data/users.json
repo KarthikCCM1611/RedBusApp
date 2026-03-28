@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "a56d4d46-b886-46ac-82bc-75c536908c24",
+    "Name": "admin",
+    "Email": "admin@gmail.com",
+    "Password": "admin123",
+    "PhoneNo": "9876543210",
+    "City": "Chennai",
+    "Role": 0
+  },
+  {
+    "Id": "78f1b6b7-6b3c-482f-9a3d-83771f166672",
+    "Name": "user1",
+    "Email": "user1@gmail.com",
+    "Password": "123456",
+    "PhoneNo": "9638527410",
+    "City": "Thoothukudi",
+    "Role": 1
+  },
+  {
+    "Id": "0199720f-a215-4f06-be91-1039657a33f8",
+    "Name": "user2",
+    "Email": "user2@gmail.com",
+    "Password": "654321",
+    "PhoneNo": "9999999999",
+    "City": "Tirunelveli",
+    "Role": 1
+  },
+  {
+    "Id": "acc68133-ceda-4539-9769-7c801ce94982",
+    "Name": "user3",
+    "Email": "user3@gmail.com",
+    "Password": "user123",
+    "PhoneNo": "5555555555",
+    "City": "Tuticorin",
+    "Role": 1
+  },
+  {
+    "Id": "b89084e5-16ad-4b6f-b870-368f122b4c0b",
+    "Name": "user4",
+    "Email": "user4@gmail.com",
+    "Password": "123456",
+    "PhoneNo": "9874563210",
+    "City": "Madurai",
+    "Role": 1
+  }
+]

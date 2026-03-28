@@ -1,0 +1,38 @@
+[
+  {
+    "Id": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "Name": "Chennai"
+  },
+  {
+    "Id": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "Name": "Kovilpatti"
+  },
+  {
+    "Id": "9db75580-5d72-4293-8410-c9028f1d2b62",
+    "Name": "Madurai"
+  },
+  {
+    "Id": "558a0c4e-bed6-4dd8-bc78-a7186ee304f9",
+    "Name": "Tirunelveli"
+  },
+  {
+    "Id": "6ab55060-cba8-4cc2-83e9-b9d4abede7f3",
+    "Name": "Vellore"
+  },
+  {
+    "Id": "fe134727-9e0f-45eb-9d33-31b7757e7771",
+    "Name": "Tuticorin"
+  },
+  {
+    "Id": "33d51581-d890-4217-82c3-05e082fb8428",
+    "Name": "Tenkasi"
+  },
+  {
+    "Id": "b7dc8d94-9cb4-46fa-97c7-71ba6bec4ab4",
+    "Name": "Saturedd"
+  },
+  {
+    "Id": "b7dc8d94-9cb4-46fa-97c7-71ba6bec4ab4",
+    "Name": "Satur"
+  }
+]

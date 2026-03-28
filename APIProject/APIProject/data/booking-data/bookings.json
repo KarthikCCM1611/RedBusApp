@@ -1,0 +1,87 @@
+[
+  {
+    "Id": "c010e7b8-8a8f-4568-b541-4ebe172b9548",
+    "UserId": "78f1b6b7-6b3c-482f-9a3d-83771f166672",
+    "BusId": "b41cdba7-e4df-4f56-9e6c-8925f0bd1375",
+    "FromLocationId": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "SeatNos": [
+      "1",
+      "32"
+    ],
+    "TotalPrice": 1300
+  },
+  {
+    "Id": "11ccc517-b32a-4fb6-93d0-ebf5ad786b5e",
+    "UserId": "78f1b6b7-6b3c-482f-9a3d-83771f166672",
+    "BusId": "c25ac6de-8481-4d4e-be3f-3b76933bc090",
+    "FromLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "ToLocationId": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "SeatNos": [
+      "1",
+      "5",
+      "9",
+      "13",
+      "17",
+      "21",
+      "25",
+      "26",
+      "27",
+      "28",
+      "24",
+      "23",
+      "22",
+      "18",
+      "19",
+      "20",
+      "16",
+      "15",
+      "14",
+      "10",
+      "11",
+      "12",
+      "8",
+      "2",
+      "3",
+      "6",
+      "7",
+      "4"
+    ],
+    "TotalPrice": 22400
+  },
+  {
+    "Id": "dd4a54e5-2ca6-48cf-9e8b-684abeb42535",
+    "UserId": "0199720f-a215-4f06-be91-1039657a33f8",
+    "BusId": "6d9c133a-08a1-4572-bc0b-8b4a7c528fbe",
+    "FromLocationId": "9db75580-5d72-4293-8410-c9028f1d2b62",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "SeatNos": [
+      "1",
+      "10",
+      "27"
+    ],
+    "TotalPrice": 2250
+  },
+  {
+    "Id": "03664e3c-e721-4142-9b5b-1536c893179f",
+    "UserId": "0199720f-a215-4f06-be91-1039657a33f8",
+    "BusId": "b41cdba7-e4df-4f56-9e6c-8925f0bd1375",
+    "FromLocationId": "cc1e8857-d6b8-4774-8312-65650f9e5a0c",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "SeatNos": [
+      "20"
+    ],
+    "TotalPrice": 650
+  },
+  {
+    "Id": "54f62de2-c73d-45ad-8903-aec046481165",
+    "UserId": "0199720f-a215-4f06-be91-1039657a33f8",
+    "BusId": "0fe3e19d-4d65-4b88-9751-f7f671ca99eb",
+    "FromLocationId": "558a0c4e-bed6-4dd8-bc78-a7186ee304f9",
+    "ToLocationId": "788947cb-4a13-4467-b9a0-917c934d86c6",
+    "SeatNos": [
+      "24"
+    ],
+    "TotalPrice": 1000
+  }
+]
